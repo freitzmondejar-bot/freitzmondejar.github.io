@@ -55,11 +55,13 @@ body{
     font-size:22px;
     color:#1877f2;
     font-weight:bold;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
 .header-title h2{
     color:white;
     font-size:22px;
+    font-weight:700;
 }
 
 .header-title p{
@@ -82,6 +84,7 @@ body{
 
 .hero p{
     color:#64748b;
+    font-size:15px;
 }
 
 /* ================= DASHBOARD ================= */
@@ -102,8 +105,10 @@ body{
     background:white;
     border-radius:22px;
     padding:28px;
+    position:relative;
+    overflow:hidden;
     cursor:pointer;
-    transition:0.3s;
+    transition:0.3s ease;
     box-shadow:0 10px 25px rgba(0,0,0,0.08);
     border:1px solid #e5e7eb;
 }
@@ -111,6 +116,16 @@ body{
 .card:hover{
     transform:translateY(-8px);
     box-shadow:0 18px 35px rgba(24,119,242,0.18);
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(to right,#1877f2,#5ca9ff);
 }
 
 .card-icon{
@@ -126,12 +141,14 @@ body{
 }
 
 .card h3{
-    margin-bottom:10px;
     font-size:22px;
+    margin-bottom:10px;
+    color:#111827;
 }
 
 .card p{
-    color:#64748b;
+    font-size:14px;
+    color:#6b7280;
     line-height:1.5;
 }
 
@@ -147,7 +164,7 @@ body{
 /* ================= LEFT PANEL ================= */
 
 .left{
-    width:340px;
+    width:360px;
     background:white;
     border-radius:22px;
     padding:20px;
@@ -165,65 +182,89 @@ body{
     border-radius:10px;
 }
 
-/* ================= BUTTON ================= */
+/* ================= MODULE HEADER ================= */
+
+.module-header{
+    margin-bottom:20px;
+}
+
+.module-title{
+    font-size:24px;
+    font-weight:700;
+    color:#0f172a;
+    margin-top:15px;
+}
+
+.module-subtitle{
+    color:#64748b;
+    font-size:14px;
+    margin-top:5px;
+}
+
+/* ================= BUTTONS ================= */
+
+.button-group{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
 
 .back{
     border:none;
     background:#1877f2;
     color:white;
-    padding:12px 18px;
+    padding:10px 16px;
     border-radius:12px;
     cursor:pointer;
-    margin-bottom:20px;
+    font-size:14px;
     font-weight:600;
+    transition:0.2s;
 }
 
 .back:hover{
     background:#0f5bd6;
 }
 
-/* ================= MODULE HEADER ================= */
-
-.module-title{
-    font-size:24px;
-    font-weight:700;
-    margin-bottom:5px;
+.logout-btn{
+    background:#dc2626;
 }
 
-.module-subtitle{
-    color:#64748b;
-    margin-bottom:20px;
+.logout-btn:hover{
+    background:#b91c1c;
 }
 
 /* ================= BOX ================= */
 
 .box{
     background:#f8fbff;
+    border:1px solid #dbeafe;
     border-left:5px solid #1877f2;
     padding:16px;
     margin-bottom:14px;
     border-radius:16px;
     cursor:pointer;
-    transition:0.25s;
-    border:1px solid #dbeafe;
+    transition:0.25s ease;
 }
 
 .box:hover{
-    transform:translateX(5px);
     background:#eef5ff;
+    transform:translateX(6px);
 }
 
 .box.active{
     background:#dbeafe;
+    border-left:5px solid #0f5bd6;
 }
 
 .box-title{
+    font-size:14px;
     font-weight:700;
-    margin-bottom:5px;
+    color:#111827;
+    margin-bottom:4px;
 }
 
 .box-desc{
-    font-size:13px;
+    font-size:12px;
     color:#64748b;
 }
 
@@ -233,88 +274,135 @@ body{
     flex:1;
     background:white;
     border-radius:22px;
-    overflow:auto;
+    overflow:hidden;
     box-shadow:0 10px 25px rgba(0,0,0,0.08);
-    padding:25px;
     border:1px solid #e5e7eb;
+    position:relative;
 }
 
-/* ================= OFFICIAL GRID ================= */
-
-.official-grid{
-    display:grid;
-    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
-    gap:20px;
-}
-
-.official-card{
-    background:#f8fbff;
-    border-radius:20px;
-    padding:18px;
-    text-align:center;
-    transition:0.3s;
-    border:1px solid #dbeafe;
-}
-
-.official-card:hover{
-    transform:translateY(-5px);
-    box-shadow:0 10px 20px rgba(0,0,0,0.08);
-}
-
-.official-card img{
+iframe{
     width:100%;
-    height:220px;
-    object-fit:cover;
-    border-radius:16px;
-    margin-bottom:12px;
+    height:100%;
+    border:none;
 }
 
-.official-card h3{
-    font-size:18px;
-    margin-bottom:5px;
+/* ================= EMPTY STATE ================= */
+
+.empty-state{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:#64748b;
+}
+
+.empty-state .icon{
+    font-size:70px;
+    margin-bottom:15px;
+}
+
+/* ================= LOGIN MODAL ================= */
+
+.login-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(15,23,42,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    backdrop-filter:blur(5px);
+}
+
+.login-box{
+    width:90%;
+    max-width:400px;
+    background:white;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    text-align:center;
+    position:relative;
+}
+
+.login-box h2{
+    margin-bottom:10px;
     color:#0f172a;
 }
 
-.official-card p{
-    font-size:13px;
+.login-box p{
     color:#64748b;
-}
-
-/* ================= SINGLE VIEW ================= */
-
-.single-view{
-    display:flex;
-    justify-content:center;
-    align-items:center;
-    height:100%;
-}
-
-.single-card{
-    max-width:420px;
-    text-align:center;
-}
-
-.single-card img{
-    width:100%;
-    max-width:320px;
-    border-radius:24px;
+    font-size:14px;
     margin-bottom:20px;
-    box-shadow:0 12px 25px rgba(0,0,0,0.15);
 }
 
-.single-card h2{
-    font-size:30px;
-    margin-bottom:10px;
+.login-box input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #cbd5e1;
+    outline:none;
+    font-size:15px;
+    margin-bottom:18px;
 }
 
-.single-card p{
-    color:#64748b;
+.login-box input:focus{
+    border:1px solid #1877f2;
+    box-shadow:0 0 0 4px rgba(24,119,242,0.1);
+}
+
+.login-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#1877f2;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.login-box button:hover{
+    background:#0f5bd6;
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.close-modal{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#ef4444;
+    color:white;
     font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.close-modal:hover{
+    background:#dc2626;
 }
 
 /* ================= MOBILE ================= */
 
 @media(max-width:768px){
+
+    .header{
+        padding:0 15px;
+    }
+
+    .hero h1{
+        font-size:26px;
+    }
 
     .wrapper{
         flex-direction:column;
@@ -323,6 +411,11 @@ body{
 
     .left{
         width:100%;
+        height:40vh;
+    }
+
+    .right{
+        height:60vh;
     }
 
 }
@@ -338,7 +431,9 @@ body{
 
     <div class="header-left">
 
-        <div class="logo">🏛️</div>
+        <div class="logo">
+            🏛️
+        </div>
 
         <div class="header-title">
             <h2>LGU Dashboard Portal</h2>
@@ -369,7 +464,8 @@ body{
 
         <!-- GEMP -->
 
-        <div class="card">
+        <div class="card"
+        onclick="openModule('gemp')">
 
             <div class="card-icon">📊</div>
 
@@ -417,7 +513,7 @@ body{
         <!-- WEBSITE -->
 
         <div class="card"
-        onclick="window.open('https://google.com','_blank')">
+        onclick="window.open('https://www.gov.ph','_blank')">
 
             <div class="card-icon">🌐</div>
 
@@ -434,11 +530,134 @@ body{
 
 </div>
 
-<!-- ================= OFFICIALS DIRECTORY ================= -->
+<!-- ================= GEMP MODULE ================= -->
+
+<div id="gemp" class="wrapper">
+
+    <div class="left">
+
+        <div class="button-group">
+
+            <button class="back"
+            onclick="goHome()">
+
+                ⬅ Back
+
+            </button>
+
+            <button class="back logout-btn"
+            onclick="logout()">
+
+                🚪 Logout
+
+            </button>
+
+        </div>
+
+        <div class="module-header">
+
+            <div class="module-title">
+                GEMP Module
+            </div>
+
+            <div class="module-subtitle">
+                Government Energy Management Program
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
+
+            <div class="box-title">Form 1A</div>
+
+            <div class="box-desc">
+                Airconditioning & Generators Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
+
+            <div class="box-title">Form 1B</div>
+
+            <div class="box-desc">
+                Centralized Airconditioning Units
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
+
+            <div class="box-title">Form 2</div>
+
+            <div class="box-desc">
+                Lighting System Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
+
+            <div class="box-title">Form 3</div>
+
+            <div class="box-desc">
+                Government Vehicles Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
+
+            <div class="box-title">Form 4</div>
+
+            <div class="box-desc">
+                ICT Equipment Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
+
+            <div class="box-title">Form 5</div>
+
+            <div class="box-desc">
+                Office Equipment Inventory
+            </div>
+
+        </div>
+
+    </div>
+
+    <!-- RIGHT -->
+
+    <div class="right">
+
+        <iframe id="preview"></iframe>
+
+        <div class="empty-state"
+        id="emptyState">
+
+            <div class="icon">📑</div>
+
+            <h2>Select a form to preview</h2>
+
+            <p>Choose a form from the left panel.</p>
+
+        </div>
+
+    </div>
+
+</div>
+
+<!-- ================= OFFICIALS ================= -->
 
 <div id="officials" class="wrapper">
-
-    <!-- LEFT PANEL -->
 
     <div class="left">
 
@@ -449,228 +668,81 @@ body{
 
         </button>
 
-        <div class="module-title">
-            Officials Directory
-        </div>
+        <div class="module-header">
 
-        <div class="module-subtitle">
-            Municipal Government Officials
-        </div>
+            <div class="module-title">
+                Officials Directory
+            </div>
 
-        <!-- MAYOR -->
-
-        <div class="box official-box"
-        data-name="Mayor"
-        data-position="Municipal Mayor"
-        data-image="images/mayor.jpg">
-
-            <div class="box-title">Mayor</div>
-            <div class="box-desc">Municipal Mayor</div>
+            <div class="module-subtitle">
+                Municipal Government Officials
+            </div>
 
         </div>
 
-        <!-- VICE MAYOR -->
-
-        <div class="box official-box"
-        data-name="Vice Mayor"
-        data-position="Vice Mayor"
-        data-image="images/vice-mayor.jpg">
-
-            <div class="box-title">Vice Mayor</div>
-            <div class="box-desc">Vice Mayor</div>
-
+        <div class="box">
+            <div class="box-title">Mayor Profile</div>
+            <div class="box-desc">Municipal Mayor Information</div>
         </div>
 
-        <!-- SB MEMBERS -->
-
-        <div class="box official-box"
-        data-name="SB Member 1"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb1.jpg">
-
-            <div class="box-title">SB Member 1</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
-
+        <div class="box">
+            <div class="box-title">Vice Mayor Profile</div>
+            <div class="box-desc">Vice Mayor Information</div>
         </div>
 
-        <div class="box official-box"
-        data-name="SB Member 2"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb2.jpg">
-
-            <div class="box-title">SB Member 2</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
-
+        <div class="box">
+            <div class="box-title">Department Heads</div>
+            <div class="box-desc">Office and Department Heads</div>
         </div>
 
-        <div class="box official-box"
-        data-name="SB Member 3"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb3.jpg">
+    </div>
 
-            <div class="box-title">SB Member 3</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
+    <div class="right">
 
-        </div>
+        <div class="empty-state">
 
-        <div class="box official-box"
-        data-name="SB Member 4"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb4.jpg">
+            <div class="icon">👨‍💼</div>
 
-            <div class="box-title">SB Member 4</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
+            <h2>Select an Official Profile</h2>
 
-        </div>
-
-        <div class="box official-box"
-        data-name="SB Member 5"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb5.jpg">
-
-            <div class="box-title">SB Member 5</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
-
-        </div>
-
-        <div class="box official-box"
-        data-name="SB Member 6"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb6.jpg">
-
-            <div class="box-title">SB Member 6</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
-
-        </div>
-
-        <div class="box official-box"
-        data-name="SB Member 7"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb7.jpg">
-
-            <div class="box-title">SB Member 7</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
-
-        </div>
-
-        <div class="box official-box"
-        data-name="SB Member 8"
-        data-position="Sangguniang Bayan Member"
-        data-image="images/sb8.jpg">
-
-            <div class="box-title">SB Member 8</div>
-            <div class="box-desc">Sangguniang Bayan Member</div>
-
-        </div>
-
-        <!-- SK -->
-
-        <div class="box official-box"
-        data-name="SK Federation President"
-        data-position="SK Federation President"
-        data-image="images/sk-president.jpg">
-
-            <div class="box-title">SK Federation President</div>
-            <div class="box-desc">SK Federation President</div>
-
-        </div>
-
-        <!-- LIGA -->
-
-        <div class="box official-box"
-        data-name="Liga President"
-        data-position="Liga ng mga Barangay President"
-        data-image="images/liga-president.jpg">
-
-            <div class="box-title">Liga President</div>
-            <div class="box-desc">Liga ng mga Barangay President</div>
+            <p>Information will appear here.</p>
 
         </div>
 
     </div>
 
-    <!-- RIGHT PANEL -->
+</div>
 
-    <div class="right"
-    id="officialPreview">
+<!-- ================= LOGIN MODAL ================= -->
 
-        <!-- DEFAULT PAGE -->
+<div id="loginModal"
+class="login-modal">
 
-        <div class="official-grid">
+    <div class="login-box">
 
-            <div class="official-card">
-                <img src="images/mayor.jpg">
-                <h3>Mayor</h3>
-                <p>Municipal Mayor</p>
-            </div>
+        <button class="close-modal"
+        onclick="closeLoginModal()">
 
-            <div class="official-card">
-                <img src="images/vice-mayor.jpg">
-                <h3>Vice Mayor</h3>
-                <p>Vice Mayor</p>
-            </div>
+            ✖
 
-            <div class="official-card">
-                <img src="images/sb1.jpg">
-                <h3>SB Member 1</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
+        </button>
 
-            <div class="official-card">
-                <img src="images/sb2.jpg">
-                <h3>SB Member 2</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
+        <h2>Authorized Access</h2>
 
-            <div class="official-card">
-                <img src="images/sb3.jpg">
-                <h3>SB Member 3</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
+        <p>
+            Enter your authorized name
+            to access the GEMP Module.
+        </p>
 
-            <div class="official-card">
-                <img src="images/sb4.jpg">
-                <h3>SB Member 4</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
+        <input type="text"
+        id="userName"
+        placeholder="Enter your name">
 
-            <div class="official-card">
-                <img src="images/sb5.jpg">
-                <h3>SB Member 5</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
+        <button onclick="validateAccess()">
 
-            <div class="official-card">
-                <img src="images/sb6.jpg">
-                <h3>SB Member 6</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
+            Access Module
 
-            <div class="official-card">
-                <img src="images/sb7.jpg">
-                <h3>SB Member 7</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
-
-            <div class="official-card">
-                <img src="images/sb8.jpg">
-                <h3>SB Member 8</h3>
-                <p>Sangguniang Bayan Member</p>
-            </div>
-
-            <div class="official-card">
-                <img src="images/sk-president.jpg">
-                <h3>SK Federation President</h3>
-                <p>SK Federation President</p>
-            </div>
-
-            <div class="official-card">
-                <img src="images/liga-president.jpg">
-                <h3>Liga President</h3>
-                <p>Liga ng mga Barangay President</p>
-            </div>
-
-        </div>
+        </button>
 
     </div>
 
@@ -680,11 +752,145 @@ body{
 
 <script>
 
+/* ================= AUTHORIZED USERS ================= */
+
+const allowedUsers = [
+
+    "freitz",
+    "jess",
+    "imee",
+    "gemma",
+    "melvin",
+    "steve",
+    "christopher",
+    "chendy"
+
+];
+
+/* ================= ELEMENTS ================= */
+
+const boxes =
+document.querySelectorAll(".box");
+
+const preview =
+document.getElementById("preview");
+
+const emptyState =
+document.getElementById("emptyState");
+
+let selectedModule = "";
+
+/* ================= BOX CLICK ================= */
+
+boxes.forEach(box => {
+
+    box.addEventListener("click", () => {
+
+        const link =
+        box.getAttribute("data-link");
+
+        if(link){
+
+            boxes.forEach(b =>
+            b.classList.remove("active"));
+
+            box.classList.add("active");
+
+            preview.src = link;
+
+            if(emptyState){
+                emptyState.style.display = "none";
+            }
+
+        }
+
+    });
+
+});
+
 /* ================= OPEN MODULE ================= */
 
 function openModule(module){
 
+    const savedUser =
+    localStorage.getItem("gempUser");
+
+    if(module === "gemp"){
+
+        if(savedUser){
+
+            showModule(module);
+
+            return;
+
+        }
+
+        selectedModule = module;
+
+        document.getElementById("loginModal")
+        .style.display = "flex";
+
+        return;
+
+    }
+
+    showModule(module);
+
+}
+
+/* ================= VALIDATE ACCESS ================= */
+
+function validateAccess(){
+
+    const userName =
+    document.getElementById("userName")
+    .value
+    .trim()
+    .toLowerCase();
+
+    if(userName === ""){
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+    const validUser =
+    allowedUsers.includes(userName);
+
+    if(!validUser){
+
+        alert(
+        "ACCESS DENIED\n\nYou are not authorized to access this module."
+        );
+
+        return;
+
+    }
+
+    localStorage.setItem("gempUser", userName);
+
+    document.getElementById("loginModal")
+    .style.display = "none";
+
+    alert("Welcome, " + userName);
+
+    showModule(selectedModule);
+
+}
+
+/* ================= SHOW MODULE ================= */
+
+function showModule(module){
+
     document.getElementById("home")
+    .style.display = "none";
+
+    document.getElementById("gemp")
+    .style.display = "none";
+
+    document.getElementById("officials")
     .style.display = "none";
 
     document.getElementById(module)
@@ -699,56 +905,54 @@ function goHome(){
     document.getElementById("home")
     .style.display = "block";
 
+    document.getElementById("gemp")
+    .style.display = "none";
+
     document.getElementById("officials")
     .style.display = "none";
 
 }
 
-/* ================= OFFICIAL CLICK ================= */
+/* ================= LOGOUT ================= */
 
-const officialBoxes =
-document.querySelectorAll(".official-box");
+function logout(){
 
-const officialPreview =
-document.getElementById("officialPreview");
+    localStorage.removeItem("gempUser");
 
-officialBoxes.forEach(box => {
+    alert("You have been logged out.");
 
-    box.addEventListener("click", () => {
+    goHome();
 
-        officialBoxes.forEach(b =>
-        b.classList.remove("active"));
+}
 
-        box.classList.add("active");
+/* ================= CLOSE LOGIN MODAL ================= */
 
-        const name =
-        box.getAttribute("data-name");
+function closeLoginModal(){
 
-        const position =
-        box.getAttribute("data-position");
+    document.getElementById("loginModal")
+    .style.display = "none";
 
-        const image =
-        box.getAttribute("data-image");
+    document.getElementById("userName")
+    .value = "";
 
-        officialPreview.innerHTML = `
+}
 
-            <div class="single-view">
+/* ================= ENTER KEY ================= */
 
-                <div class="single-card">
+document.addEventListener("keydown", function(e){
 
-                    <img src="${image}" alt="${name}">
+    if(e.key === "Enter"){
 
-                    <h2>${name}</h2>
+        const modal =
+        document.getElementById("loginModal");
 
-                    <p>${position}</p>
+        if(modal.style.display === "flex"){
 
-                </div>
+            validateAccess();
 
-            </div>
+        }
 
-        `;
-
-    });
+    }
 
 });
 
