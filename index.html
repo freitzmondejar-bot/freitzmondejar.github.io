@@ -5,66 +5,163 @@
 <title>LGU Dashboard</title>
 
 <style>
+* {
+  box-sizing: border-box;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  background: #e7f3ff; /* light Facebook-style blue */
   margin: 0;
-  padding: 20px;
+  font-family: Arial, sans-serif;
+  background: #e7f3ff;
 }
 
-h1 {
-  text-align: center;
-  margin-bottom: 30px;
-  color: #1c1e21;
+/* MAIN LAYOUT */
+.wrapper {
+  display: flex;
+  height: 100vh;
 }
 
-.container {
-  display: grid;
-  grid-template-columns: repeat(5, 1fr);
-  gap: 20px;
-  max-width: 1000px;
-  margin: auto;
+/* LEFT PANEL */
+.left {
+  width: 35%;
+  min-width: 280px;
+  background: #ffffff;
+  overflow-y: auto;
+  padding: 15px;
+  border-right: 2px solid #d0e3ff;
 }
 
+/* RIGHT PREVIEW */
+.right {
+  flex: 1;
+  background: #f5f9ff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* BUTTON BOXES */
 .box {
-  background: #1877f2; /* Facebook blue */
+  display: block;
+  background: #1877f2;
   color: white;
-  padding: 30px;
-  text-align: center;
-  border-radius: 10px;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 8px;
   text-decoration: none;
-  font-size: 16px;
-  transition: 0.3s;
   font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
 }
 
 .box:hover {
   background: #0f5bd6;
-  transform: scale(1.05);
+  transform: scale(1.02);
+}
+
+/* IFRAME PREVIEW */
+iframe {
+  width: 95%;
+  height: 90%;
+  border: none;
+  border-radius: 10px;
+  background: white;
+}
+
+/* MOBILE RESPONSIVE */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+  }
+
+  .left {
+    width: 100%;
+    height: 40vh;
+    border-right: none;
+    border-bottom: 2px solid #d0e3ff;
+  }
+
+  .right {
+    height: 60vh;
+  }
 }
 </style>
-
 </head>
 
 <body>
 
-<h1>LGU Dashboard Links</h1>
+<div class="wrapper">
 
-<div class="container">
+  <!-- LEFT MENU -->
+  <div class="left">
 
-  <a class="box" href="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true" target="_blank">GEMP Form 1A - Survey of Government Airconditioning Units and Generators</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-2" target="_blank">Sheet 2</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-3" target="_blank">Sheet 3</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-4" target="_blank">Sheet 4</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-5" target="_blank">Sheet 5</a>
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit?usp=sharing">
+      GEMP Form 1A - Airconditioning & Generators
+    </a>
 
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-6" target="_blank">Sheet 6</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-7" target="_blank">Sheet 7</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-8" target="_blank">Sheet 8</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-9" target="_blank">Sheet 9</a>
-  <a class="box" href="https://docs.google.com/spreadsheets/d/your-link-10" target="_blank">Sheet 10</a>
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-2">
+      Sheet 2
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-3">
+      Sheet 3
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-4">
+      Sheet 4
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-5">
+      Sheet 5
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-6">
+      Sheet 6
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-7">
+      Sheet 7
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-8">
+      Sheet 8
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-9">
+      Sheet 9
+    </a>
+
+    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-10">
+      Sheet 10
+    </a>
+
+  </div>
+
+  <!-- RIGHT PREVIEW -->
+  <div class="right">
+    <iframe id="preview" src=""></iframe>
+  </div>
 
 </div>
+
+<script>
+const boxes = document.querySelectorAll(".box");
+const preview = document.getElementById("preview");
+
+boxes.forEach(box => {
+
+  // Hover preview (desktop)
+  box.addEventListener("mouseenter", () => {
+    preview.src = box.getAttribute("data-link");
+  });
+
+  // Click fallback (mobile)
+  box.addEventListener("click", () => {
+    preview.src = box.getAttribute("data-link");
+  });
+
+});
+</script>
 
 </body>
 </html>
