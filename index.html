@@ -1,46 +1,309 @@
-<!-- LEFT -->
-<div class="left">
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>LGU Dashboard Portal</title>
 
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
-    GEMP Form 1A - Airconditioning & Generators
+<style>
+* {
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+body {
+  margin: 0;
+  background: #eef5ff;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  background: linear-gradient(90deg, #1877f2, #0f5bd6);
+  color: white;
+  padding: 12px 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+}
+
+.logo {
+  width: 45px;
+  height: 45px;
+  background: white;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+.header h2 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.subtitle {
+  text-align: center;
+  padding: 10px;
+  font-size: 14px;
+  color: #333;
+  font-weight: bold;
+}
+
+/* MAIN DASHBOARD */
+.main-dashboard {
+  padding: 20px;
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.card {
+  width: 220px;
+  height: 120px;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+  border-left: 6px solid #1877f2;
+}
+
+.card:hover {
+  transform: translateY(-5px);
+  background: #e7f0ff;
+}
+
+/* MODULE TITLE */
+.module-title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  margin: 10px 0;
+  color: #1c1e21;
+}
+
+/* WRAPPER */
+.wrapper {
+  display: none;
+  height: calc(100vh - 220px);
+  gap: 10px;
+  padding: 10px;
+}
+
+/* LEFT PANEL */
+.left {
+  width: 360px;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 10px;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+}
+
+/* BOX ITEMS */
+.box {
+  display: block;
+  background: #f6f9ff;
+  border-left: 5px solid #1877f2;
+  padding: 12px;
+  margin-bottom: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.2s;
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.box:hover {
+  background: #e7f0ff;
+  transform: translateX(5px);
+}
+
+.box.active {
+  background: #dbe9ff;
+  border-left: 5px solid #0f5bd6;
+}
+
+/* RIGHT PANEL */
+.right {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  overflow: hidden;
+}
+
+iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* BACK BUTTON */
+.back {
+  margin-bottom: 10px;
+  padding: 8px 12px;
+  background: #1877f2;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* MOBILE */
+@media (max-width: 768px) {
+  .main-dashboard {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .wrapper {
+    flex-direction: column;
+    height: auto;
+  }
+
+  .left {
+    width: 100%;
+    height: 40vh;
+  }
+
+  .right {
+    height: 60vh;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="logo"></div>
+  <h2>LGU Dashboard Portal</h2>
+</div>
+
+<!-- MAIN DASHBOARD -->
+<div id="home">
+
+  <div class="module-title">Main Dashboard</div>
+
+  <div class="main-dashboard">
+
+    <div class="card" onclick="openModule('gemp')">
+      📊 GEMP
+    </div>
+
+    <div class="card" onclick="openModule('officials')">
+      🧑‍💼 Officials
+    </div>
+
+  </div>
+</div>
+
+<!-- ================= GEMP MODULE ================= -->
+<div id="gemp" class="wrapper">
+
+  <div class="left">
+
+    <button class="back" onclick="goHome()">⬅ Back</button>
+
+    <div class="module-title">GEMP Module</div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
+      Form 1A - Airconditioning & Generators
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
+      Form 1B - Centralized Airconditioning Units
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
+      Form 2 - Lighting System Inventory
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
+      Form 3 - Government Vehicles Inventory
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
+      Form 4 - ICT Equipment Inventory
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
+      Form 5 - Office Equipment Inventory
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit">
+      Annex A - Electricity Consumption Report
+    </div>
+
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit">
+      Annex B - Fuel Consumption Report
+    </div>
+
   </div>
 
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
-    GEMP Form 1B - Centralized Airconditioning Units
-  </div>
-
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
-    GEMP Form 2 - Lighting System Inventory
-  </div>
-
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
-    GEMP Form 3 - Government Vehicles Inventory
-  </div>
-
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
-    GEMP Form 4 - Computer & ICT Equipment Inventory
-  </div>
-
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
-    GEMP Form 5 - Office Equipment Inventory
-  </div>
-
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit">
-    Annex A - Monthly Electricity Consumption Report
-  </div>
-
-  <div class="box" data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit">
-    Annex B - Monthly Fuel Consumption Report
-  </div>
-
-  <!-- NEW ADDITIONS -->
-
-  <div class="box" data-link="#">
-    Annex C - Water Consumption Monitoring (Optional)
-  </div>
-
-  <div class="box" data-link="#">
-    Annex D - Energy Efficiency Action Plan
+  <div class="right">
+    <iframe id="preview"></iframe>
   </div>
 
 </div>
+
+<!-- ================= OFFICIALS MODULE ================= -->
+<div id="officials" class="wrapper">
+
+  <div class="left">
+
+    <button class="back" onclick="goHome()">⬅ Back</button>
+
+    <div class="module-title">Officials Module</div>
+
+    <div class="box">Mayor Profile</div>
+    <div class="box">Vice Mayor Profile</div>
+    <div class="box">Department Heads</div>
+
+  </div>
+
+  <div class="right">
+    <div style="padding:20px;">Select an Official Profile</div>
+  </div>
+
+</div>
+
+<script>
+
+const boxes = document.querySelectorAll(".box");
+const preview = document.getElementById("preview");
+
+boxes.forEach(box => {
+  box.addEventListener("click", () => {
+    const link = box.getAttribute("data-link");
+
+    if (link) {
+      boxes.forEach(b => b.classList.remove("active"));
+      box.classList.add("active");
+      preview.src = link;
+    }
+  });
+});
+
+function openModule(module) {
+  document.getElementById("home").style.display = "none";
+  document.getElementById("gemp").style.display = "none";
+  document.getElementById("officials").style.display = "none";
+
+  document.getElementById(module).style.display = "flex";
+}
+
+function goHome() {
+  document.getElementById("home").style.display = "block";
+  document.getElementById("gemp").style.display = "none";
+  document.getElementById("officials").style.display = "none";
+}
+
+</script>
+
+</body>
+</html>
