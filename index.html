@@ -2,273 +2,576 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>LGU Dashboard Portal</title>
 
 <style>
-* {
-  box-sizing: border-box;
-  font-family: Arial, sans-serif;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Segoe UI',Tahoma,Geneva,Verdana,sans-serif;
 }
 
-body {
-  margin: 0;
-  background: #eef5ff;
+body{
+    background:#edf3fb;
+    color:#1f2937;
 }
 
-/* HEADER */
-.header {
-  display: flex;
-  align-items: center;
-  background: linear-gradient(90deg, #1877f2, #0f5bd6);
-  color: white;
-  padding: 12px 20px;
-  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
+/* ================= HEADER ================= */
+
+.header{
+    height:75px;
+    background:linear-gradient(135deg,#0f5bd6,#1877f2,#3399ff);
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:0 30px;
+    box-shadow:0 4px 18px rgba(0,0,0,0.15);
+    position:sticky;
+    top:0;
+    z-index:100;
 }
 
-.logo {
-  width: 45px;
-  height: 45px;
-  background: white;
-  border-radius: 8px;
-  margin-right: 15px;
+.header-left{
+    display:flex;
+    align-items:center;
+    gap:15px;
 }
 
-.header h2 {
-  margin: 0;
-  font-size: 18px;
+.logo{
+    width:48px;
+    height:48px;
+    background:white;
+    border-radius:14px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:22px;
+    color:#1877f2;
+    font-weight:bold;
+    box-shadow:0 4px 12px rgba(0,0,0,0.15);
 }
 
-.subtitle {
-  text-align: center;
-  padding: 10px;
-  font-size: 14px;
-  color: #333;
-  font-weight: bold;
+.header-title h2{
+    color:white;
+    font-size:22px;
+    font-weight:700;
 }
 
-/* MAIN DASHBOARD */
-.main-dashboard {
-  padding: 20px;
-  display: flex;
-  gap: 20px;
-  justify-content: center;
+.header-title p{
+    color:rgba(255,255,255,0.85);
+    font-size:13px;
 }
 
-.card {
-  width: 220px;
-  height: 120px;
-  background: white;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 18px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: 0.2s;
-  border-left: 6px solid #1877f2;
+/* ================= HOME ================= */
+
+.hero{
+    text-align:center;
+    padding:45px 20px 20px;
 }
 
-.card:hover {
-  transform: translateY(-5px);
-  background: #e7f0ff;
+.hero h1{
+    font-size:34px;
+    color:#0f172a;
+    margin-bottom:10px;
 }
 
-/* MODULE TITLE */
-.module-title {
-  text-align: center;
-  font-size: 20px;
-  font-weight: bold;
-  margin: 10px 0;
-  color: #1c1e21;
+.hero p{
+    color:#64748b;
+    font-size:15px;
 }
 
-/* WRAPPER */
-.wrapper {
-  display: none;
-  height: calc(100vh - 220px);
-  gap: 10px;
-  padding: 10px;
+.main-dashboard{
+    width:100%;
+    max-width:1100px;
+    margin:30px auto;
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+    gap:25px;
+    padding:20px;
+}
+
+/* ================= CARDS ================= */
+
+.card{
+    background:white;
+    border-radius:22px;
+    padding:28px;
+    position:relative;
+    overflow:hidden;
+    cursor:pointer;
+    transition:0.3s ease;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    border:1px solid #e5e7eb;
+}
+
+.card:hover{
+    transform:translateY(-8px);
+    box-shadow:0 18px 35px rgba(24,119,242,0.18);
+}
+
+.card::before{
+    content:'';
+    position:absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height:5px;
+    background:linear-gradient(to right,#1877f2,#5ca9ff);
+}
+
+.card-icon{
+    width:70px;
+    height:70px;
+    border-radius:18px;
+    background:#e8f1ff;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:34px;
+    margin-bottom:20px;
+}
+
+.card h3{
+    font-size:22px;
+    margin-bottom:10px;
+    color:#111827;
+}
+
+.card p{
+    font-size:14px;
+    color:#6b7280;
+    line-height:1.5;
+}
+
+/* ================= MODULE ================= */
+
+.wrapper{
+    display:none;
+    gap:20px;
+    padding:20px;
+    height:calc(100vh - 90px);
 }
 
 /* LEFT PANEL */
-.left {
-  width: 360px;
-  background: #ffffff;
-  border-radius: 12px;
-  padding: 10px;
-  overflow-y: auto;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+
+.left{
+    width:360px;
+    background:white;
+    border-radius:22px;
+    padding:20px;
+    overflow-y:auto;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    border:1px solid #e5e7eb;
 }
 
-/* BOX ITEMS */
-.box {
-  display: block;
-  background: #f6f9ff;
-  border-left: 5px solid #1877f2;
-  padding: 12px;
-  margin-bottom: 10px;
-  border-radius: 8px;
-  cursor: pointer;
-  transition: 0.2s;
-  font-size: 13px;
-  font-weight: 600;
+.left::-webkit-scrollbar{
+    width:6px;
 }
 
-.box:hover {
-  background: #e7f0ff;
-  transform: translateX(5px);
+.left::-webkit-scrollbar-thumb{
+    background:#cbd5e1;
+    border-radius:10px;
 }
 
-.box.active {
-  background: #dbe9ff;
-  border-left: 5px solid #0f5bd6;
+/* MODULE HEADER */
+
+.module-header{
+    margin-bottom:20px;
 }
 
-/* RIGHT PANEL */
-.right {
-  flex: 1;
-  background: #ffffff;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-  overflow: hidden;
+.module-title{
+    font-size:24px;
+    font-weight:700;
+    color:#0f172a;
+    margin-top:15px;
 }
 
-iframe {
-  width: 100%;
-  height: 100%;
-  border: none;
+.module-subtitle{
+    color:#64748b;
+    font-size:14px;
+    margin-top:5px;
 }
 
 /* BACK BUTTON */
-.back {
-  margin-bottom: 10px;
-  padding: 8px 12px;
-  background: #1877f2;
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
+
+.back{
+    border:none;
+    background:#1877f2;
+    color:white;
+    padding:10px 16px;
+    border-radius:12px;
+    cursor:pointer;
+    font-size:14px;
+    font-weight:600;
+    transition:0.2s;
+}
+
+.back:hover{
+    background:#0f5bd6;
+}
+
+/* MENU BOX */
+
+.box{
+    background:#f8fbff;
+    border:1px solid #dbeafe;
+    border-left:5px solid #1877f2;
+    padding:16px;
+    margin-bottom:14px;
+    border-radius:16px;
+    cursor:pointer;
+    transition:0.25s ease;
+}
+
+.box:hover{
+    background:#eef5ff;
+    transform:translateX(6px);
+}
+
+.box.active{
+    background:#dbeafe;
+    border-left:5px solid #0f5bd6;
+}
+
+.box-title{
+    font-size:14px;
+    font-weight:700;
+    color:#111827;
+    margin-bottom:4px;
+}
+
+.box-desc{
+    font-size:12px;
+    color:#64748b;
+}
+
+/* RIGHT PANEL */
+
+.right{
+    flex:1;
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:0 10px 25px rgba(0,0,0,0.08);
+    border:1px solid #e5e7eb;
+    position:relative;
+}
+
+iframe{
+    width:100%;
+    height:100%;
+    border:none;
+}
+
+/* EMPTY STATE */
+
+.empty-state{
+    height:100%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    color:#64748b;
+}
+
+.empty-state .icon{
+    font-size:70px;
+    margin-bottom:15px;
 }
 
 /* MOBILE */
-@media (max-width: 768px) {
-  .main-dashboard {
-    flex-direction: column;
-    align-items: center;
-  }
 
-  .wrapper {
-    flex-direction: column;
-    height: auto;
-  }
+@media(max-width:768px){
 
-  .left {
-    width: 100%;
-    height: 40vh;
-  }
+    .header{
+        padding:0 15px;
+    }
 
-  .right {
-    height: 60vh;
-  }
+    .hero h1{
+        font-size:26px;
+    }
+
+    .wrapper{
+        flex-direction:column;
+        height:auto;
+    }
+
+    .left{
+        width:100%;
+        height:40vh;
+    }
+
+    .right{
+        height:60vh;
+    }
+
 }
+
 </style>
 </head>
 
 <body>
 
-<!-- HEADER -->
+<!-- ================= HEADER ================= -->
+
 <div class="header">
-  <div class="logo"></div>
-  <h2>LGU Dashboard Portal</h2>
+
+    <div class="header-left">
+
+        <div class="logo">
+            🏛️
+        </div>
+
+        <div class="header-title">
+            <h2>LGU Dashboard Portal</h2>
+            <p>Municipal Digital Information System</p>
+        </div>
+
+    </div>
+
 </div>
 
-<!-- MAIN DASHBOARD -->
+<!-- ================= HOME ================= -->
+
 <div id="home">
 
-  <div class="module-title">Main Dashboard</div>
-
-  <div class="main-dashboard">
-
-    <div class="card" onclick="openModule('gemp')">
-      📊 GEMP
+    <div class="hero">
+        <h1>Welcome to the LGU Dashboard</h1>
+        <p>Centralized access to government monitoring, reports, inventories, and officials information.</p>
     </div>
 
-    <div class="card" onclick="openModule('officials')">
-      🧑‍💼 Officials
+    <div class="main-dashboard">
+
+        <!-- GEMP CARD -->
+
+        <div class="card" onclick="openModule('gemp')">
+
+            <div class="card-icon">
+                📊
+            </div>
+
+            <h3>GEMP Module</h3>
+
+            <p>
+                Access inventory monitoring, electricity consumption reports,
+                fuel monitoring, ICT equipment records, and more.
+            </p>
+
+        </div>
+
+        <!-- OFFICIALS CARD -->
+
+        <div class="card" onclick="openModule('officials')">
+
+            <div class="card-icon">
+                👨‍💼
+            </div>
+
+            <h3>Officials Directory</h3>
+
+            <p>
+                View profiles of elected officials,
+                department heads, and LGU organizational information.
+            </p>
+
+        </div>
+
     </div>
 
-  </div>
 </div>
 
 <!-- ================= GEMP MODULE ================= -->
+
 <div id="gemp" class="wrapper">
 
-  <div class="left">
+    <!-- LEFT -->
 
-    <button class="back" onclick="goHome()">⬅ Back</button>
+    <div class="left">
 
-    <div class="module-title">GEMP Module</div>
+        <button class="back" onclick="goHome()">⬅ Back to Dashboard</button>
 
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
-      Form 1A - Airconditioning & Generators
+        <div class="module-header">
+            <div class="module-title">GEMP Module</div>
+            <div class="module-subtitle">
+                Government Energy Management Program Forms
+            </div>
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
+
+            <div class="box-title">
+                Form 1A
+            </div>
+
+            <div class="box-desc">
+                Airconditioning & Generators Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
+
+            <div class="box-title">
+                Form 1B
+            </div>
+
+            <div class="box-desc">
+                Centralized Airconditioning Units
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
+
+            <div class="box-title">
+                Form 2
+            </div>
+
+            <div class="box-desc">
+                Lighting System Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
+
+            <div class="box-title">
+                Form 3
+            </div>
+
+            <div class="box-desc">
+                Government Vehicles Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
+
+            <div class="box-title">
+                Form 4
+            </div>
+
+            <div class="box-desc">
+                ICT Equipment Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
+
+            <div class="box-title">
+                Form 5
+            </div>
+
+            <div class="box-desc">
+                Office Equipment Inventory
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit">
+
+            <div class="box-title">
+                Annex A
+            </div>
+
+            <div class="box-desc">
+                Electricity Consumption Report
+            </div>
+
+        </div>
+
+        <div class="box"
+        data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit">
+
+            <div class="box-title">
+                Annex B
+            </div>
+
+            <div class="box-desc">
+                Fuel Consumption Report
+            </div>
+
+        </div>
+
     </div>
 
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
-      Form 1B - Centralized Airconditioning Units
+    <!-- RIGHT -->
+
+    <div class="right">
+
+        <iframe id="preview"></iframe>
+
+        <div class="empty-state" id="emptyState">
+
+            <div class="icon">📑</div>
+
+            <h2>Select a form to preview</h2>
+
+            <p>Choose a document from the left panel.</p>
+
+        </div>
+
     </div>
-
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
-      Form 2 - Lighting System Inventory
-    </div>
-
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
-      Form 3 - Government Vehicles Inventory
-    </div>
-
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
-      Form 4 - ICT Equipment Inventory
-    </div>
-
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
-      Form 5 - Office Equipment Inventory
-    </div>
-
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit">
-      Annex A - Electricity Consumption Report
-    </div>
-
-    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit">
-      Annex B - Fuel Consumption Report
-    </div>
-
-  </div>
-
-  <div class="right">
-    <iframe id="preview"></iframe>
-  </div>
 
 </div>
 
 <!-- ================= OFFICIALS MODULE ================= -->
+
 <div id="officials" class="wrapper">
 
-  <div class="left">
+    <div class="left">
 
-    <button class="back" onclick="goHome()">⬅ Back</button>
+        <button class="back" onclick="goHome()">⬅ Back to Dashboard</button>
 
-    <div class="module-title">Officials Module</div>
+        <div class="module-header">
+            <div class="module-title">Officials Module</div>
+            <div class="module-subtitle">
+                Municipal Government Officials
+            </div>
+        </div>
 
-    <div class="box">Mayor Profile</div>
-    <div class="box">Vice Mayor Profile</div>
-    <div class="box">Department Heads</div>
+        <div class="box">
+            <div class="box-title">Mayor Profile</div>
+            <div class="box-desc">Municipal Mayor Information</div>
+        </div>
 
-  </div>
+        <div class="box">
+            <div class="box-title">Vice Mayor Profile</div>
+            <div class="box-desc">Vice Mayor Information</div>
+        </div>
 
-  <div class="right">
-    <div style="padding:20px;">Select an Official Profile</div>
-  </div>
+        <div class="box">
+            <div class="box-title">Department Heads</div>
+            <div class="box-desc">Heads of Offices and Departments</div>
+        </div>
+
+    </div>
+
+    <div class="right">
+
+        <div class="empty-state">
+
+            <div class="icon">👨‍💼</div>
+
+            <h2>Select an Official Profile</h2>
+
+            <p>Information will appear here.</p>
+
+        </div>
+
+    </div>
 
 </div>
 
@@ -276,31 +579,46 @@ iframe {
 
 const boxes = document.querySelectorAll(".box");
 const preview = document.getElementById("preview");
+const emptyState = document.getElementById("emptyState");
 
 boxes.forEach(box => {
-  box.addEventListener("click", () => {
-    const link = box.getAttribute("data-link");
 
-    if (link) {
-      boxes.forEach(b => b.classList.remove("active"));
-      box.classList.add("active");
-      preview.src = link;
-    }
-  });
+    box.addEventListener("click", () => {
+
+        const link = box.getAttribute("data-link");
+
+        if(link){
+
+            boxes.forEach(b => b.classList.remove("active"));
+
+            box.classList.add("active");
+
+            preview.src = link;
+
+            emptyState.style.display = "none";
+
+        }
+
+    });
+
 });
 
-function openModule(module) {
-  document.getElementById("home").style.display = "none";
-  document.getElementById("gemp").style.display = "none";
-  document.getElementById("officials").style.display = "none";
+function openModule(module){
 
-  document.getElementById(module).style.display = "flex";
+    document.getElementById("home").style.display = "none";
+    document.getElementById("gemp").style.display = "none";
+    document.getElementById("officials").style.display = "none";
+
+    document.getElementById(module).style.display = "flex";
+
 }
 
-function goHome() {
-  document.getElementById("home").style.display = "block";
-  document.getElementById("gemp").style.display = "none";
-  document.getElementById("officials").style.display = "none";
+function goHome(){
+
+    document.getElementById("home").style.display = "block";
+    document.getElementById("gemp").style.display = "none";
+    document.getElementById("officials").style.display = "none";
+
 }
 
 </script>
