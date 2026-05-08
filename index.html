@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 <title>LGU Dashboard Portal</title>
 
 <style>
+
+/* ================= GLOBAL ================= */
 
 *{
     margin:0;
@@ -66,7 +69,7 @@ body{
     font-size:13px;
 }
 
-/* ================= HOME ================= */
+/* ================= HERO ================= */
 
 .hero{
     text-align:center;
@@ -84,6 +87,8 @@ body{
     font-size:15px;
 }
 
+/* ================= DASHBOARD ================= */
+
 .main-dashboard{
     width:100%;
     max-width:1100px;
@@ -94,7 +99,7 @@ body{
     padding:20px;
 }
 
-/* ================= CARDS ================= */
+/* ================= CARD ================= */
 
 .card{
     background:white;
@@ -156,7 +161,7 @@ body{
     height:calc(100vh - 90px);
 }
 
-/* LEFT PANEL */
+/* ================= LEFT PANEL ================= */
 
 .left{
     width:360px;
@@ -177,7 +182,7 @@ body{
     border-radius:10px;
 }
 
-/* MODULE HEADER */
+/* ================= MODULE HEADER ================= */
 
 .module-header{
     margin-bottom:20px;
@@ -196,7 +201,13 @@ body{
     margin-top:5px;
 }
 
-/* BACK BUTTON */
+/* ================= BUTTONS ================= */
+
+.button-group{
+    display:flex;
+    gap:10px;
+    margin-bottom:15px;
+}
 
 .back{
     border:none;
@@ -214,7 +225,15 @@ body{
     background:#0f5bd6;
 }
 
-/* MENU BOX */
+.logout-btn{
+    background:#dc2626;
+}
+
+.logout-btn:hover{
+    background:#b91c1c;
+}
+
+/* ================= BOX ================= */
 
 .box{
     background:#f8fbff;
@@ -249,7 +268,7 @@ body{
     color:#64748b;
 }
 
-/* RIGHT PANEL */
+/* ================= RIGHT PANEL ================= */
 
 .right{
     flex:1;
@@ -267,7 +286,7 @@ iframe{
     border:none;
 }
 
-/* EMPTY STATE */
+/* ================= EMPTY STATE ================= */
 
 .empty-state{
     height:100%;
@@ -283,7 +302,75 @@ iframe{
     margin-bottom:15px;
 }
 
-/* MOBILE */
+/* ================= LOGIN MODAL ================= */
+
+.login-modal{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    background:rgba(15,23,42,0.55);
+    display:none;
+    align-items:center;
+    justify-content:center;
+    z-index:999;
+    backdrop-filter:blur(5px);
+}
+
+.login-box{
+    width:90%;
+    max-width:400px;
+    background:white;
+    padding:35px;
+    border-radius:24px;
+    box-shadow:0 20px 50px rgba(0,0,0,0.25);
+    text-align:center;
+}
+
+.login-box h2{
+    margin-bottom:10px;
+    color:#0f172a;
+}
+
+.login-box p{
+    color:#64748b;
+    font-size:14px;
+    margin-bottom:20px;
+}
+
+.login-box input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:1px solid #cbd5e1;
+    outline:none;
+    font-size:15px;
+    margin-bottom:18px;
+}
+
+.login-box input:focus{
+    border:1px solid #1877f2;
+    box-shadow:0 0 0 4px rgba(24,119,242,0.1);
+}
+
+.login-box button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:#1877f2;
+    color:white;
+    font-size:15px;
+    font-weight:600;
+    cursor:pointer;
+}
+
+.login-box button:hover{
+    background:#0f5bd6;
+}
+
+/* ================= MOBILE ================= */
 
 @media(max-width:768px){
 
@@ -340,8 +427,14 @@ iframe{
 <div id="home">
 
     <div class="hero">
+
         <h1>Welcome to the LGU Dashboard</h1>
-        <p>Centralized access to government monitoring, reports, inventories, and officials information.</p>
+
+        <p>
+            Centralized access to monitoring,
+            inventories, reports, and official records.
+        </p>
+
     </div>
 
     <div class="main-dashboard">
@@ -350,15 +443,13 @@ iframe{
 
         <div class="card" onclick="openModule('gemp')">
 
-            <div class="card-icon">
-                📊
-            </div>
+            <div class="card-icon">📊</div>
 
             <h3>GEMP Module</h3>
 
             <p>
-                Access inventory monitoring, electricity consumption reports,
-                fuel monitoring, ICT equipment records, and more.
+                Government Energy Management Program
+                reports and inventories.
             </p>
 
         </div>
@@ -367,15 +458,13 @@ iframe{
 
         <div class="card" onclick="openModule('officials')">
 
-            <div class="card-icon">
-                👨‍💼
-            </div>
+            <div class="card-icon">👨‍💼</div>
 
             <h3>Officials Directory</h3>
 
             <p>
-                View profiles of elected officials,
-                department heads, and LGU organizational information.
+                View profiles and information
+                of LGU officials and departments.
             </p>
 
         </div>
@@ -388,25 +477,37 @@ iframe{
 
 <div id="gemp" class="wrapper">
 
-    <!-- LEFT -->
-
     <div class="left">
 
-        <button class="back" onclick="goHome()">⬅ Back to Dashboard</button>
+        <div class="button-group">
+
+            <button class="back" onclick="goHome()">
+                ⬅ Back
+            </button>
+
+            <button class="back logout-btn"
+            onclick="logout()">
+                🚪 Logout
+            </button>
+
+        </div>
 
         <div class="module-header">
-            <div class="module-title">GEMP Module</div>
-            <div class="module-subtitle">
-                Government Energy Management Program Forms
+
+            <div class="module-title">
+                GEMP Module
             </div>
+
+            <div class="module-subtitle">
+                Government Energy Management Program
+            </div>
+
         </div>
 
         <div class="box"
         data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
 
-            <div class="box-title">
-                Form 1A
-            </div>
+            <div class="box-title">Form 1A</div>
 
             <div class="box-desc">
                 Airconditioning & Generators Inventory
@@ -417,9 +518,7 @@ iframe{
         <div class="box"
         data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
 
-            <div class="box-title">
-                Form 1B
-            </div>
+            <div class="box-title">Form 1B</div>
 
             <div class="box-desc">
                 Centralized Airconditioning Units
@@ -430,9 +529,7 @@ iframe{
         <div class="box"
         data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
 
-            <div class="box-title">
-                Form 2
-            </div>
+            <div class="box-title">Form 2</div>
 
             <div class="box-desc">
                 Lighting System Inventory
@@ -443,9 +540,7 @@ iframe{
         <div class="box"
         data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
 
-            <div class="box-title">
-                Form 3
-            </div>
+            <div class="box-title">Form 3</div>
 
             <div class="box-desc">
                 Government Vehicles Inventory
@@ -456,9 +551,7 @@ iframe{
         <div class="box"
         data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
 
-            <div class="box-title">
-                Form 4
-            </div>
+            <div class="box-title">Form 4</div>
 
             <div class="box-desc">
                 ICT Equipment Inventory
@@ -469,38 +562,10 @@ iframe{
         <div class="box"
         data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
 
-            <div class="box-title">
-                Form 5
-            </div>
+            <div class="box-title">Form 5</div>
 
             <div class="box-desc">
                 Office Equipment Inventory
-            </div>
-
-        </div>
-
-        <div class="box"
-        data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit">
-
-            <div class="box-title">
-                Annex A
-            </div>
-
-            <div class="box-desc">
-                Electricity Consumption Report
-            </div>
-
-        </div>
-
-        <div class="box"
-        data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit">
-
-            <div class="box-title">
-                Annex B
-            </div>
-
-            <div class="box-desc">
-                Fuel Consumption Report
             </div>
 
         </div>
@@ -519,7 +584,7 @@ iframe{
 
             <h2>Select a form to preview</h2>
 
-            <p>Choose a document from the left panel.</p>
+            <p>Choose a form from the left panel.</p>
 
         </div>
 
@@ -527,19 +592,29 @@ iframe{
 
 </div>
 
-<!-- ================= OFFICIALS MODULE ================= -->
+<!-- ================= OFFICIALS ================= -->
 
 <div id="officials" class="wrapper">
 
     <div class="left">
 
-        <button class="back" onclick="goHome()">⬅ Back to Dashboard</button>
+        <button class="back"
+        onclick="goHome()">
+
+            ⬅ Back
+
+        </button>
 
         <div class="module-header">
-            <div class="module-title">Officials Module</div>
+
+            <div class="module-title">
+                Officials Directory
+            </div>
+
             <div class="module-subtitle">
                 Municipal Government Officials
             </div>
+
         </div>
 
         <div class="box">
@@ -554,7 +629,7 @@ iframe{
 
         <div class="box">
             <div class="box-title">Department Heads</div>
-            <div class="box-desc">Heads of Offices and Departments</div>
+            <div class="box-desc">Office and Department Heads</div>
         </div>
 
     </div>
@@ -575,11 +650,59 @@ iframe{
 
 </div>
 
+<!-- ================= LOGIN MODAL ================= -->
+
+<div id="loginModal" class="login-modal">
+
+    <div class="login-box">
+
+        <h2>Authorized Access</h2>
+
+        <p>
+            Enter your authorized name
+            to access the GEMP Module.
+        </p>
+
+        <input type="text"
+        id="userName"
+        placeholder="Enter your name">
+
+        <button onclick="validateAccess()">
+            Access Module
+        </button>
+
+    </div>
+
+</div>
+
+<!-- ================= SCRIPT ================= -->
+
 <script>
+
+/* ================= AUTHORIZED USERS ================= */
+
+const allowedUsers = [
+
+    "freitz",
+    "jess",
+    "imee",
+    "gemma",
+    "melvin",
+    "steve",
+    "christopher",
+    "chendy"
+
+];
+
+/* ================= ELEMENTS ================= */
 
 const boxes = document.querySelectorAll(".box");
 const preview = document.getElementById("preview");
 const emptyState = document.getElementById("emptyState");
+
+let selectedModule = "";
+
+/* ================= BOX CLICK ================= */
 
 boxes.forEach(box => {
 
@@ -595,7 +718,9 @@ boxes.forEach(box => {
 
             preview.src = link;
 
-            emptyState.style.display = "none";
+            if(emptyState){
+                emptyState.style.display = "none";
+            }
 
         }
 
@@ -603,23 +728,139 @@ boxes.forEach(box => {
 
 });
 
+/* ================= OPEN MODULE ================= */
+
 function openModule(module){
 
-    document.getElementById("home").style.display = "none";
-    document.getElementById("gemp").style.display = "none";
-    document.getElementById("officials").style.display = "none";
+    const savedUser =
+    localStorage.getItem("gempUser");
 
-    document.getElementById(module).style.display = "flex";
+    if(module === "gemp"){
+
+        if(savedUser){
+
+            showModule(module);
+
+            return;
+        }
+
+        selectedModule = module;
+
+        document.getElementById("loginModal")
+        .style.display = "flex";
+
+        return;
+    }
+
+    showModule(module);
 
 }
+
+/* ================= VALIDATE ACCESS ================= */
+
+function validateAccess(){
+
+    const userName =
+    document.getElementById("userName")
+    .value
+    .trim()
+    .toLowerCase();
+
+    if(userName === ""){
+
+        alert("Please enter your name.");
+
+        return;
+
+    }
+
+    const validUser =
+    allowedUsers.includes(userName);
+
+    if(!validUser){
+
+        alert(
+        "ACCESS DENIED\n\nYou are not authorized to access this module."
+        );
+
+        return;
+
+    }
+
+    localStorage.setItem("gempUser", userName);
+
+    document.getElementById("loginModal")
+    .style.display = "none";
+
+    alert("Welcome, " + userName);
+
+    showModule(selectedModule);
+
+}
+
+/* ================= SHOW MODULE ================= */
+
+function showModule(module){
+
+    document.getElementById("home")
+    .style.display = "none";
+
+    document.getElementById("gemp")
+    .style.display = "none";
+
+    document.getElementById("officials")
+    .style.display = "none";
+
+    document.getElementById(module)
+    .style.display = "flex";
+
+}
+
+/* ================= GO HOME ================= */
 
 function goHome(){
 
-    document.getElementById("home").style.display = "block";
-    document.getElementById("gemp").style.display = "none";
-    document.getElementById("officials").style.display = "none";
+    document.getElementById("home")
+    .style.display = "block";
+
+    document.getElementById("gemp")
+    .style.display = "none";
+
+    document.getElementById("officials")
+    .style.display = "none";
 
 }
+
+/* ================= LOGOUT ================= */
+
+function logout(){
+
+    localStorage.removeItem("gempUser");
+
+    alert("You have been logged out.");
+
+    goHome();
+
+}
+
+/* ================= ENTER KEY ================= */
+
+document.addEventListener("keydown", function(e){
+
+    if(e.key === "Enter"){
+
+        const modal =
+        document.getElementById("loginModal");
+
+        if(modal.style.display === "flex"){
+
+            validateAccess();
+
+        }
+
+    }
+
+});
 
 </script>
 
