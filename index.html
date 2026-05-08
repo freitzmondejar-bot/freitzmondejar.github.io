@@ -2,108 +2,117 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>LGU Dashboard</title>
+<title>LGU Dashboard Portal</title>
 
 <style>
 * {
   box-sizing: border-box;
+  font-family: Arial, sans-serif;
 }
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif;
-  background: #e7f3ff;
+  background: #eef5ff;
 }
 
 /* HEADER */
 .header {
   display: flex;
   align-items: center;
-  background: #1877f2;
+  background: linear-gradient(90deg, #1877f2, #0f5bd6);
   color: white;
-  padding: 10px 20px;
+  padding: 12px 20px;
+  box-shadow: 0 3px 10px rgba(0,0,0,0.15);
 }
 
-/* LOGO PLACEHOLDER */
 .logo {
-  width: 50px;
-  height: 50px;
+  width: 45px;
+  height: 45px;
   background: white;
   border-radius: 8px;
   margin-right: 15px;
 }
 
-/* TITLE AREA */
 .header h2 {
   margin: 0;
-  font-size: 20px;
+  font-size: 18px;
 }
 
-/* SUB TITLE */
 .subtitle {
   text-align: center;
-  padding: 10px;
+  padding: 8px;
+  font-size: 14px;
+  color: #333;
   font-weight: bold;
-  color: #1c1e21;
 }
 
-/* MAIN WRAPPER */
+/* MAIN LAYOUT */
 .wrapper {
   display: flex;
   height: calc(100vh - 110px);
+  gap: 10px;
+  padding: 10px;
 }
 
 /* LEFT PANEL */
 .left {
-  width: 35%;
-  min-width: 280px;
+  width: 360px;
   background: #ffffff;
-  overflow-y: auto;
+  border-radius: 12px;
   padding: 10px;
-  border-right: 2px solid #d0e3ff;
+  overflow-y: auto;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
 
-/* RIGHT PREVIEW */
-.right {
-  flex: 1;
-  background: #f5f9ff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-/* BUTTON BOXES */
+/* DASHBOARD CARD ITEMS */
 .box {
   display: block;
-  background: #1877f2;
-  color: white;
+  background: #f6f9ff;
+  border-left: 5px solid #1877f2;
   padding: 12px;
-  margin-bottom: 8px;
-  border-radius: 6px;
-  text-decoration: none;
-  font-weight: bold;
+  margin-bottom: 10px;
+  border-radius: 8px;
   cursor: pointer;
   transition: 0.2s;
-  font-size: 14px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #1c1e21;
 }
 
 .box:hover {
-  background: #0f5bd6;
+  background: #e7f0ff;
+  transform: translateX(5px);
 }
 
-/* IFRAME */
+/* ACTIVE STATE */
+.box.active {
+  background: #dbe9ff;
+  border-left: 5px solid #0f5bd6;
+}
+
+/* RIGHT PANEL */
+.right {
+  flex: 1;
+  background: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
 iframe {
-  width: 95%;
-  height: 90%;
+  width: 100%;
+  height: 100%;
   border: none;
-  border-radius: 10px;
-  background: white;
 }
 
 /* MOBILE */
 @media (max-width: 768px) {
   .wrapper {
     flex-direction: column;
+    height: auto;
   }
 
   .left {
@@ -126,74 +135,71 @@ iframe {
   <h2>LGU Dashboard Portal</h2>
 </div>
 
-<!-- SUB TITLE -->
 <div class="subtitle">
-  Government Records & Google Sheets Access System
+  Government Records & Monitoring System
 </div>
 
 <!-- MAIN -->
 <div class="wrapper">
 
-  <!-- LEFT MENU -->
+  <!-- LEFT -->
   <div class="left">
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit?usp=sharing">
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1_oEKHaoPNXjZ4bWLerCy8kDhzeefV93K/edit">
       GEMP Form 1A - Airconditioning & Generators
-    </a>
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form 1B - Survey on Centralized Airconditioning Units
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1pXi3BnlBl4uDUd2Kdf3isE2C_z89rJAo/edit">
+      GEMP Form 1B - Centralized Airconditioning
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form 2 - Survey on Lighting System
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1b2EB-0X1Ie8jr_Oi5JZVRb3CE-TIhFXP/edit">
+      GEMP Form 2 - Lighting System
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form 3 - Inventory of Vehicles
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/11iFxrycxLpxRhbvOYk9C0lGIF8zBt7GC/edit">
+      GEMP Form 3 - Vehicles Inventory
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form 4 - Inventory of Personal Computers
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1fQJzNaE5LvgeCc7MLb-sw5ulY15fg6Nk/edit">
+      GEMP Form 4 - Personal Computers
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form 5 - Inventory of Other Office Equiment
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1T3SWfTGyQdESnopzM699YB8rF_RJ-KcY/edit">
+      GEMP Form 5 - Office Equipment
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form Annex A - Monthly Electricity Consumption Report
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1HayRajQJmcj6A7EQW6VxE2DPR_4boRtj/edit">
+      Annex A - Electricity Consumption
+    </div>
 
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit?usp=sharing&ouid=102949677516563276460&rtpof=true&sd=true">
-      GEMP Form Annex B - Monthly Fuel Consumption Report
-    </a>
-
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-9">
-      Sheet 9
-    </a>
-
-    <a class="box" data-link="https://docs.google.com/spreadsheets/d/your-link-10">
-      Sheet 10
-    </a>
+    <div class="box" data-link="https://docs.google.com/spreadsheets/d/1re349G6N42FenqZQdnpWt8KAhdxknuv2/edit">
+      Annex B - Fuel Consumption
+    </div>
 
   </div>
 
-  <!-- RIGHT PREVIEW -->
+  <!-- RIGHT -->
   <div class="right">
     <iframe id="preview"></iframe>
   </div>
 
 </div>
 
-<!-- SCRIPT -->
 <script>
 const boxes = document.querySelectorAll(".box");
 const preview = document.getElementById("preview");
 
-// CLICK ONLY (your request)
 boxes.forEach(box => {
   box.addEventListener("click", () => {
+
+    // remove active class
+    boxes.forEach(b => b.classList.remove("active"));
+
+    // set active
+    box.classList.add("active");
+
+    // load preview
     preview.src = box.getAttribute("data-link");
   });
 });
