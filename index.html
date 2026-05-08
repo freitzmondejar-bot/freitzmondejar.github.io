@@ -15,10 +15,42 @@ body {
   background: #e7f3ff;
 }
 
-/* MAIN LAYOUT */
+/* HEADER */
+.header {
+  display: flex;
+  align-items: center;
+  background: #1877f2;
+  color: white;
+  padding: 10px 20px;
+}
+
+/* LOGO PLACEHOLDER */
+.logo {
+  width: 50px;
+  height: 50px;
+  background: white;
+  border-radius: 8px;
+  margin-right: 15px;
+}
+
+/* TITLE AREA */
+.header h2 {
+  margin: 0;
+  font-size: 20px;
+}
+
+/* SUB TITLE */
+.subtitle {
+  text-align: center;
+  padding: 10px;
+  font-weight: bold;
+  color: #1c1e21;
+}
+
+/* MAIN WRAPPER */
 .wrapper {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 110px);
 }
 
 /* LEFT PANEL */
@@ -27,7 +59,7 @@ body {
   min-width: 280px;
   background: #ffffff;
   overflow-y: auto;
-  padding: 15px;
+  padding: 10px;
   border-right: 2px solid #d0e3ff;
 }
 
@@ -45,21 +77,21 @@ body {
   display: block;
   background: #1877f2;
   color: white;
-  padding: 15px;
-  margin-bottom: 10px;
-  border-radius: 8px;
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 6px;
   text-decoration: none;
   font-weight: bold;
   cursor: pointer;
   transition: 0.2s;
+  font-size: 14px;
 }
 
 .box:hover {
   background: #0f5bd6;
-  transform: scale(1.02);
 }
 
-/* IFRAME PREVIEW */
+/* IFRAME */
 iframe {
   width: 95%;
   height: 90%;
@@ -68,7 +100,7 @@ iframe {
   background: white;
 }
 
-/* MOBILE RESPONSIVE */
+/* MOBILE */
 @media (max-width: 768px) {
   .wrapper {
     flex-direction: column;
@@ -77,8 +109,6 @@ iframe {
   .left {
     width: 100%;
     height: 40vh;
-    border-right: none;
-    border-bottom: 2px solid #d0e3ff;
   }
 
   .right {
@@ -90,6 +120,18 @@ iframe {
 
 <body>
 
+<!-- HEADER -->
+<div class="header">
+  <div class="logo"></div>
+  <h2>LGU Dashboard Portal</h2>
+</div>
+
+<!-- SUB TITLE -->
+<div class="subtitle">
+  Government Records & Google Sheets Access System
+</div>
+
+<!-- MAIN -->
 <div class="wrapper">
 
   <!-- LEFT MENU -->
@@ -139,27 +181,21 @@ iframe {
 
   <!-- RIGHT PREVIEW -->
   <div class="right">
-    <iframe id="preview" src=""></iframe>
+    <iframe id="preview"></iframe>
   </div>
 
 </div>
 
+<!-- SCRIPT -->
 <script>
 const boxes = document.querySelectorAll(".box");
 const preview = document.getElementById("preview");
 
+// CLICK ONLY (your request)
 boxes.forEach(box => {
-
-  // Hover preview (desktop)
-  box.addEventListener("mouseenter", () => {
-    preview.src = box.getAttribute("data-link");
-  });
-
-  // Click fallback (mobile)
   box.addEventListener("click", () => {
     preview.src = box.getAttribute("data-link");
   });
-
 });
 </script>
 
