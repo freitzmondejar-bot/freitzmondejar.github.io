@@ -91,7 +91,7 @@ body{
 
 .main-dashboard{
     width:100%;
-    max-width:1100px;
+    max-width:1200px;
     margin:30px auto;
     display:grid;
     grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -326,6 +326,7 @@ iframe{
     border-radius:24px;
     box-shadow:0 20px 50px rgba(0,0,0,0.25);
     text-align:center;
+    position:relative;
 }
 
 .login-box h2{
@@ -368,6 +369,27 @@ iframe{
 
 .login-box button:hover{
     background:#0f5bd6;
+}
+
+/* ================= CLOSE BUTTON ================= */
+
+.close-modal{
+    position:absolute;
+    top:15px;
+    right:15px;
+    width:35px;
+    height:35px;
+    border:none;
+    border-radius:50%;
+    background:#ef4444;
+    color:white;
+    font-size:16px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.close-modal:hover{
+    background:#dc2626;
 }
 
 /* ================= MOBILE ================= */
@@ -431,17 +453,19 @@ iframe{
         <h1>Welcome to the LGU Dashboard</h1>
 
         <p>
-            Centralized access to monitoring,
-            inventories, reports, and official records.
+            Centralized access to reports,
+            inventories, online services,
+            and official records.
         </p>
 
     </div>
 
     <div class="main-dashboard">
 
-        <!-- GEMP CARD -->
+        <!-- GEMP -->
 
-        <div class="card" onclick="openModule('gemp')">
+        <div class="card"
+        onclick="openModule('gemp')">
 
             <div class="card-icon">📊</div>
 
@@ -454,9 +478,10 @@ iframe{
 
         </div>
 
-        <!-- OFFICIALS CARD -->
+        <!-- OFFICIALS -->
 
-        <div class="card" onclick="openModule('officials')">
+        <div class="card"
+        onclick="openModule('officials')">
 
             <div class="card-icon">👨‍💼</div>
 
@@ -465,6 +490,38 @@ iframe{
             <p>
                 View profiles and information
                 of LGU officials and departments.
+            </p>
+
+        </div>
+
+        <!-- FACEBOOK -->
+
+        <div class="card"
+        onclick="window.open('https://www.facebook.com','_blank')">
+
+            <div class="card-icon">📘</div>
+
+            <h3>LGU Facebook Page</h3>
+
+            <p>
+                Visit the official Facebook page
+                for announcements and updates.
+            </p>
+
+        </div>
+
+        <!-- WEBSITE -->
+
+        <div class="card"
+        onclick="window.open('https://www.gov.ph','_blank')">
+
+            <div class="card-icon">🌐</div>
+
+            <h3>LGU Website</h3>
+
+            <p>
+                Visit the official LGU website
+                for online services and information.
             </p>
 
         </div>
@@ -481,13 +538,18 @@ iframe{
 
         <div class="button-group">
 
-            <button class="back" onclick="goHome()">
+            <button class="back"
+            onclick="goHome()">
+
                 ⬅ Back
+
             </button>
 
             <button class="back logout-btn"
             onclick="logout()">
+
                 🚪 Logout
+
             </button>
 
         </div>
@@ -578,7 +640,8 @@ iframe{
 
         <iframe id="preview"></iframe>
 
-        <div class="empty-state" id="emptyState">
+        <div class="empty-state"
+        id="emptyState">
 
             <div class="icon">📑</div>
 
@@ -652,9 +715,17 @@ iframe{
 
 <!-- ================= LOGIN MODAL ================= -->
 
-<div id="loginModal" class="login-modal">
+<div id="loginModal"
+class="login-modal">
 
     <div class="login-box">
+
+        <button class="close-modal"
+        onclick="closeLoginModal()">
+
+            ✖
+
+        </button>
 
         <h2>Authorized Access</h2>
 
@@ -668,7 +739,9 @@ iframe{
         placeholder="Enter your name">
 
         <button onclick="validateAccess()">
+
             Access Module
+
         </button>
 
     </div>
@@ -696,9 +769,14 @@ const allowedUsers = [
 
 /* ================= ELEMENTS ================= */
 
-const boxes = document.querySelectorAll(".box");
-const preview = document.getElementById("preview");
-const emptyState = document.getElementById("emptyState");
+const boxes =
+document.querySelectorAll(".box");
+
+const preview =
+document.getElementById("preview");
+
+const emptyState =
+document.getElementById("emptyState");
 
 let selectedModule = "";
 
@@ -708,11 +786,13 @@ boxes.forEach(box => {
 
     box.addEventListener("click", () => {
 
-        const link = box.getAttribute("data-link");
+        const link =
+        box.getAttribute("data-link");
 
         if(link){
 
-            boxes.forEach(b => b.classList.remove("active"));
+            boxes.forEach(b =>
+            b.classList.remove("active"));
 
             box.classList.add("active");
 
@@ -742,6 +822,7 @@ function openModule(module){
             showModule(module);
 
             return;
+
         }
 
         selectedModule = module;
@@ -750,6 +831,7 @@ function openModule(module){
         .style.display = "flex";
 
         return;
+
     }
 
     showModule(module);
@@ -840,6 +922,18 @@ function logout(){
     alert("You have been logged out.");
 
     goHome();
+
+}
+
+/* ================= CLOSE LOGIN MODAL ================= */
+
+function closeLoginModal(){
+
+    document.getElementById("loginModal")
+    .style.display = "none";
+
+    document.getElementById("userName")
+    .value = "";
 
 }
 
